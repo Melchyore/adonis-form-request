@@ -100,7 +100,7 @@
   },
   "peerDependencies": {
     "@adonisjs/lucid": "^18.0.0",
-    "@adoonisjs/application": "^5.0.0",
+    "@adonisjs/application": "^5.0.0",
     "openapi-types": ">=7"
   },
   "main": "./build/providers/FormRequestProvider.js",
