@@ -97,9 +97,11 @@ export default class StoreUserRequest extends FormRequest {
 
 - `after()` doesn't return anything. You can perform some actions after validation. If you want to access validated data, you can do it through `this.validated()`.
 
-Then, in a controller, you need to import the `formRequest` decorator and your file.
+Then, in a controller, you need to import the `formRequest` decorator and your file and type-hint the `request` argument with your form request class.
 
 ```ts
+// App/Controllers/Http/UsersController.ts
+
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 import { formRequest } from '@melchyore/adonis-form-request/build'
@@ -114,7 +116,7 @@ export default class UsersController {
 }
 ```
 
-When using a Form request class, you must **never** use `request` from `context`, always use the **second** `request` argument.
+When using a Form request class, you should **never** use `request` from `context`, always use the **`request`** argument.
 
 It has the same methods and properties as the default `Request` class, in addition to new methods.
 
