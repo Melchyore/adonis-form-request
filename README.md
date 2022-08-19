@@ -89,7 +89,7 @@ export default class StoreUserRequest extends FormRequest {
 }
 ```
 
-- `authorize()` returns a `boolean`. This method is used to authorize the incoming request. If you don't have an authorization logic, you can delete the method as it always returns `true` in the parent class.
+- `authorize()` returns a `boolean`. This method is used to authorize the incoming request. If you don't have an authorization logic, you can delete the method as it always returns `true` in the parent class. When it returns `false`, an HTTP response with status code 403 will be returned and the controller method will not be executed.
 
 - `rules()` returns a [schema validator](https://docs.adonisjs.com/guides/validator/introduction#schema-composition) or a [validator class](https://docs.adonisjs.com/guides/validator/introduction#validator-classes).
 
@@ -133,6 +133,10 @@ It has the same methods and properties as the default `Request` class, in additi
 > **Note**
 > 
 > All the above methods are typed.
+
+> **Note**
+> 
+> If the validation fails, an HTTP response with status code 422 will be returned and the controller method will not be executed.
 
 ## **Usage with route model binding**
 When using route model binding and form request on the same controller method (same request), the request argument **must** be the last one.

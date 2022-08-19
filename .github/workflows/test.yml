@@ -17,6 +17,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Install
-        run: npm install
+        run: npm install && npm install -g npm-install-peers
+      - name: Install peer dependencies
+        run: npm-install-peers
       - name: Run tests
         run: npm test
