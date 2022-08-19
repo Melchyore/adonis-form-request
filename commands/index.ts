@@ -3,4 +3,4 @@
  * ex: '@org/package/build/commands/Command'
  */
 
-export default []
+export default ['@melchyore/adonis-form-request/build/commands/MakeFormRequest']

@@ -11,6 +11,7 @@ build
 dist
 shrinkwrap.yaml
 test/__app
+*.tgz
 
 # Remove after configuration
 yarn.lock

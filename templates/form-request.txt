@@ -1,0 +1,38 @@
+import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+
+import { schema } from '@ioc:Adonis/Core/Validator'
+import { FormRequest } from '@ioc:Adonis/Addons/FormRequest'
+
+export default class {{ filename }} extends FormRequest {
+  constructor(protected context: HttpContextContract) {
+    super(context)
+  }
+
+  /**
+   * Determine if the user is authorized to make the incoming request.
+   * Can be safely deleted if you don't have any authorization logic.
+   */
+  public async authorize() {
+    return true
+  }
+
+  /**
+   * Validation rules.
+   * Can also return a Validator class.
+   */
+  public rules() {
+    return {
+      schema: schema.create({})
+    }
+  }
+
+  /**
+   * Before hook to be executed before validation.
+   */
+  protected async before() {}
+
+  /**
+   * After hook to be executed after successful validation.
+   */
+  protected async after() {}
+}

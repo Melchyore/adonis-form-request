@@ -1,76 +1,135 @@
 {
-  "name": "@verful/adonis-package-template",
-  "version": "1.0.0",
-  "description": "A template for AdonisJS packages",
+  "name": "@melchyore/adonis-form-request",
+  "version": "0.0.0",
+  "description": "Use dedicated classes to authorize and validate requests",
   "keywords": [
     "typescript",
     "adonisjs",
     "package",
-    "template"
+    "template",
+    "adonis",
+    "form",
+    "request",
+    "http",
+    "response",
+    "context",
+    "validator",
+    "validation",
+    "validate",
+    "authorize",
+    "authorization",
+    "right",
+    "bouncer",
+    "framework",
+    "authenticated",
+    "rules",
+    "controller",
+    "error",
+    "schema",
+    "schema-validation",
+    "indicative",
+    "node",
+    "nodejs",
+    "sanitize",
+    "sanitization",
+    "xss",
+    "permission",
+    "route",
+    "routing"
   ],
   "license": "MIT",
   "scripts": {
-    "configure": "node --require=@adonisjs/require-ts/build/register configure.ts",
-    "pretest": "yarn lint",
-    "test": "node --require=@adonisjs/require-ts/build/register bin/test.ts",
+    "mrm": "mrm --preset=@adonisjs/mrm-preset",
+    "pretest": "npm run lint",
+    "test": "node -r @adonisjs/require-ts/build/register bin/test.ts",
     "clean": "del-cli build",
     "copyfiles": "copyfiles \"templates/**/*.txt\" \"instructions.md\" build",
-    "compile": "yarn lint && yarn clean && tsc",
-    "build": "yarn compile && yarn copyfiles",
+    "compile": "npm run lint && npm run clean && tsc && npm run copyfiles",
+    "build": "npm run compile",
     "release": "np --message=\"chore(release): %s\"",
-    "version": "yarn build",
-    "prepublishOnly": "yarn build",
+    "version": "npm run build",
+    "prepublishOnly": "npm run build",
     "lint": "eslint . --ext=.ts",
     "format": "prettier --write .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "commit": "git-cz",
+    "sync-labels": "github-label-sync --labels ./node_modules/@adonisjs/mrm-preset/gh-labels.json Melchyore/adonis-form-request"
   },
-  "dependencies": {},
   "devDependencies": {
+    "@adonisjs/assembler": "^5.8.1",
+    "@adonisjs/bodyparser": "^8.1.6",
     "@adonisjs/core": "^5.8.5",
+    "@adonisjs/http-server": "^5.11.0",
+    "@adonisjs/lucid": "^18.0.1",
+    "@adonisjs/mrm-preset": "^5.0.3",
     "@adonisjs/require-ts": "^2.0.12",
     "@adonisjs/sink": "^5.4.0",
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-conventional": "^17.0.3",
+    "@japa/api-client": "^1.4.0",
     "@japa/assert": "^1.3.4",
+    "@japa/expect": "^1.1.4",
     "@japa/run-failed-tests": "^1.0.7",
     "@japa/runner": "^2.0.9",
     "@japa/spec-reporter": "^1.1.12",
+    "@poppinss/dev-utils": "^2.0.3",
     "@poppinss/utils": "^5.0.0",
     "@types/node": "^18.0.6",
+    "@types/supertest": "^2.0.12",
+    "adonis-preset-ts": "^2.1.0",
+    "commitizen": "^4.2.5",
     "copyfiles": "^2.4.1",
+    "cz-conventional-changelog": "^3.3.0",
     "del-cli": "^4.0.1",
     "eslint": "^8.20.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-adonis": "^2.1.0",
     "eslint-plugin-prettier": "^4.0.0",
     "execa": "^5",
+    "github-label-sync": "^2.2.0",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
+    "mrm": "^4.0.0",
     "np": "^7.6.1",
     "prettier": "^2.7.1",
+    "reflect-metadata": "^0.1.13",
+    "source-map-support": "^0.5.21",
+    "sqlite3": "^5.0.11",
+    "supertest": "^6.2.4",
     "typescript": "^4.7.3"
   },
-  "main": "",
+  "peerDependencies": {
+    "@adonisjs/lucid": "^18.0.0",
+    "@adoonisjs/application": "^5.0.0",
+    "openapi-types": ">=7"
+  },
+  "main": "./build/providers/FormRequestProvider.js",
+  "types": "./build/adonis-typings/index.d.ts",
   "files": [
     "build/adonis-typings",
     "build/commands",
     "build/providers",
     "build/src",
     "build/templates",
-    "build/instructions.md"
+    "build/instructions.md",
+    "build/instructions.js",
+    "build/index.js",
+    "build/index.d.ts"
   ],
-  "types": "build/adonis-typings/index.d.ts",
   "publishConfig": {
     "access": "public",
     "tag": "latest"
   },
   "adonisjs": {
     "instructionsMd": "./build/instructions.md",
-    "preloads": [],
+    "instructions": "./build/instructions.js",
     "templates": {},
-    "types": "@package/slug",
+    "types": "@melchyore/adonis-form-request",
     "providers": [
-      "@package/slug"
+      "@melchyore/adonis-form-request"
+    ],
+    "commands": [
+      "@melchyore/adonis-form-request/build/commands"
     ]
   },
   "eslintConfig": {
@@ -114,9 +173,39 @@
     ]
   },
   "np": {
-    "message": "chore(release): %s",
-    "tag": "latest",
-    "branch": "main",
+    "contents": ".",
     "anyBranch": false
+  },
+  "author": {
+    "name": "Oussama Benhamed",
+    "email": "b.oussama@corposmart.dz"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Melchyore/adonis-form-request.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Melchyore/adonis-form-request/issues"
+  },
+  "homepage": "https://github.com/Melchyore/adonis-form-request#readme",
+  "mrmConfig": {
+    "core": false,
+    "license": "MIT",
+    "services": [],
+    "minNodeVersion": "16.17.0",
+    "probotApps": [
+      "stale",
+      "lock"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "dependencies": {
+    "@adonisjs/application": "^5.2.5",
+    "@adonisjs/route-model-binding": "^1.0.1",
+    "@poppinss/hooks": "^5.0.3"
   }
 }

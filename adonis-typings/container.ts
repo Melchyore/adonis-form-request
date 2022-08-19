@@ -1,5 +1,8 @@
 declare module '@ioc:Adonis/Core/Application' {
+  import type { FormRequestContract, DecoratorFn } from '@ioc:Adonis/Addons/FormRequest'
   export interface ContainerBindings {
-    // declare your container bindings here
+    'Adonis/Addons/FormRequest': {
+      FormRequest: FormRequestContract
+    }
   }
 }

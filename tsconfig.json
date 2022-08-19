@@ -1,26 +1,29 @@
 {
   "compilerOptions": {
-    "target": "ES2022",
-    "module": "CommonJS",
-    "lib": ["ES2022"],
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "removeComments": true,
-    "declaration": true,
-    "rootDir": "./",
-    "outDir": "./build",
-    "strictNullChecks": true,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "noImplicitAny": true,
-    "strictFunctionTypes": true,
-    "noImplicitThis": true,
-    "skipLibCheck": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "types": ["@types/node", "@adonisjs/core"]
+    "skipLibCheck": true,
+    "outDir": "build",
+    "rootDir": "./",
+    "sourceMap": true,
+    "paths": {},
+    "types": [
+      "@types/node",
+      "@adonisjs/core",
+      "@adonisjs/lucid",
+      "@adonisjs/route-model-binding/build/adonis-typings",
+      "reflect-metadata"
+    ]
   },
-  "include": ["./**/*"],
-  "exclude": ["./node_modules", "./build"]
+  "include": [
+    "**/*"
+  ],
+  "exclude": [
+    "./node_modules",
+    "./build"
+  ],
+  "extends": "./node_modules/@adonisjs/mrm-preset/_tsconfig",
+  "files": [
+    "./adonis-typings/index.ts",
+  ]
 }
