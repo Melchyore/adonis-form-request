@@ -204,6 +204,7 @@
     }
   },
   "dependencies": {
+    "@adonisjs/route-model-binding": "^1.0.1",
     "@poppinss/hooks": "^5.0.3"
   }
 }
