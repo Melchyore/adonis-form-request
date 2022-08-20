@@ -1,6 +1,6 @@
 {
   "name": "@melchyore/adonis-form-request",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Use dedicated classes to authorize and validate requests",
   "keywords": [
     "typescript",
