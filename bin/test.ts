@@ -1,9 +1,6 @@
-import 'reflect-metadata'
 import { expect } from '@japa/expect'
 import { assert } from '@japa/assert'
-import { specReporter } from '@japa/spec-reporter'
-import { runFailedTests } from '@japa/run-failed-tests'
-import { processCliArgs, configure, run } from '@japa/runner'
+import { processCLIArgs, configure, run } from '@japa/runner'
 
 /*
 |--------------------------------------------------------------------------
@@ -18,15 +15,20 @@ import { processCliArgs, configure, run } from '@japa/runner'
 |
 | Please consult japa.dev/runner-config for the config docs.
 */
+processCLIArgs(process.argv.slice(2))
 configure({
-  ...processCliArgs(process.argv.slice(2)),
-  ...{
-    files: ['tests/**/*.spec.ts'],
-    plugins: [assert(), runFailedTests(), expect()],
-    reporters: [specReporter()],
-    importer: (filePath) => import(filePath),
-    forceExit: true,
-  },
+  plugins: [expect(), assert()],
+  suites: [
+    {
+      name: 'unit',
+      files: ['tests/unit/**/*.spec.ts'],
+    },
+    {
+      name: 'functional',
+      files: ['tests/functional/**/*.spec.ts'],
+      timeout: 2000 * 10,
+    },
+  ],
 })
 
 /*

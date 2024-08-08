@@ -1,29 +1,14 @@
 {
+  "extends": "@adonisjs/tsconfig/tsconfig.package.json",
   "compilerOptions": {
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "skipLibCheck": true,
     "outDir": "build",
     "rootDir": "./",
-    "sourceMap": true,
-    "paths": {},
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "types": [
-      "@types/node",
       "@adonisjs/core",
       "@adonisjs/lucid",
-      "@adonisjs/route-model-binding/build/adonis-typings",
-      "reflect-metadata"
+      "@adonisjs/route-model-binding/build/adonis-typings"
     ]
-  },
-  "include": [
-    "**/*"
-  ],
-  "exclude": [
-    "./node_modules",
-    "./build"
-  ],
-  "extends": "./node_modules/@adonisjs/mrm-preset/_tsconfig",
-  "files": [
-    "./adonis-typings/index.ts",
-  ]
+  }
 }

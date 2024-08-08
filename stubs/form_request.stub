@@ -1,10 +1,14 @@
-import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+{{{
+  exports({ to: '{{ destination }}' })
+}}}
 
-import { schema } from '@ioc:Adonis/Core/Validator'
-import { FormRequest } from '@ioc:Adonis/Addons/FormRequest'
+import type { HttpContext } from '@adonisjs/core/http'
 
-export default class {{ filename }} extends FormRequest {
-  constructor(protected context: HttpContextContract) {
+import vine from '@vinejs/vine'
+import { FormRequest } from '@artian-techs/adonis-form-request'
+
+export default class {{ requestName }} extends FormRequest {
+  constructor(protected context: HttpContext) {
     super(context)
   }
 
@@ -21,9 +25,13 @@ export default class {{ filename }} extends FormRequest {
    * Can also return a Validator class.
    */
   public rules() {
-    return {
-      schema: schema.create({})
-    }
+    const rules = vine.compile(
+      vine.object({
+        // Define your validation rules here
+      })
+    )
+
+    return rules
   }
 
   /**

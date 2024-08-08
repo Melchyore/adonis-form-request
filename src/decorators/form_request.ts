@@ -1,6 +1,7 @@
-import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import 'reflect-metadata'
+import { HttpContext } from '@adonisjs/core/http'
 
-import FormRequest from '../FormRequest'
+import { FormRequest } from '../form_request.js'
 
 export function formRequest() {
   return function (target: Object, propertyKey: string, descriptor: PropertyDescriptor) {
@@ -8,7 +9,7 @@ export function formRequest() {
     const methodParams = Reflect.getMetadata('design:paramtypes', target, propertyKey)
 
     descriptor.value = async function (...args: any[]) {
-      const context = args[0] as HttpContextContract
+      const context = args[0] as HttpContext
       const { response } = context
 
       for (let i = 0; i < methodParams.length; ++i) {
@@ -16,7 +17,7 @@ export function formRequest() {
           typeof methodParams[i] === 'function' &&
           Object.getPrototypeOf(methodParams[i]) === FormRequest
         ) {
-          const requestInstance = new methodParams[i](context)
+          const requestInstance = new methodParams[i](context) as FormRequest
 
           if (!(await requestInstance.authorize())) {
             return response.forbidden()
